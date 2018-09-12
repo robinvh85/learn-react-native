@@ -21,7 +21,7 @@ class AuthScreen extends React.Component {
   render(){
     return (
       <View>
-        <Header title='Auth' />
+        <Header title='Authentication' />
         <LoginForm />
       </View>
     );
