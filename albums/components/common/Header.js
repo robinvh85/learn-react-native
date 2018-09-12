@@ -22,8 +22,8 @@ const stylesheet = {
   },
   textStyle: {
     fontSize: 30,
-    color: 'red'
+    color: '#007aff'
   }
 }
 
-export default Header;
+export { Header };
