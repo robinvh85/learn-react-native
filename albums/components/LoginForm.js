@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Card, CardSection, Button, Input } from './common'
+import { View, Text } from 'react-native';
+import { Card, CardSection, Button, Input, Spinner } from './common'
+import firebase from 'firebase';
 
 class LoginForm extends Component {
-  state = {email: '', password: ''};
+  state = {email: '', password: '', error: '', loading: false};
+
+  onButtonPress(){
+    // debugger;
+    const { email, password } = this.state;
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch( () => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .catch(() => {
+            this.setState({ error: 'Authentication failed', loading: true });
+          });
+      });
+  }
+
+  renderButton(){
+    if(this.state.loading){
+      return <Spinner size='small' />
+    }
+
+    return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
+  }
 
   render() {
     return (
@@ -25,11 +47,22 @@ class LoginForm extends Component {
             onChangeText={ text => this.setState({ password: text }) }
           />
         </CardSection>
+        <Text style={ styles.errorStyle }>
+          { this.state.error }
+        </Text>
         <CardSection>
-          <Button>Login</Button>
+          { this.renderButton() }
         </CardSection>
       </Card>
     )
+  }
+}
+
+const styles = {
+  errorStyle: {
+    fontSize: 20,
+    alighSelf: 'center',
+    color: 'red'
   }
 }
 
