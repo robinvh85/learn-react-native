@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import AlbumScreen from './screens/AlbumScreen';
 import AuthScreen from './screens/AuthScreen';
+import TechStackScreen from './screens/TechStackScreen';
 
 // import Header from './components/header';
 // import AlbumList from './components/AlbumList';
@@ -33,6 +34,7 @@ import AuthScreen from './screens/AuthScreen';
 // });
 
 const App = createStackNavigator({
+  TechStack: TechStackScreen,
   Auth: AuthScreen,
   Album: AlbumScreen,
 });
