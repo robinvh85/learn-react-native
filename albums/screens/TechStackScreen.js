@@ -4,11 +4,15 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../reducers';
 import { Header } from '../components/common'
+import LibraryList from '../components/LibraryList'
 
 const TechStackScreen = () => {
   return (
     <Provider store={ createStore(reducers) }>
-      <Header title='Tech Stack' />
+      <View>
+        <Header title='Tech Stack' />
+        <LibraryList />
+      </View>
     </Provider>
   )
 }
